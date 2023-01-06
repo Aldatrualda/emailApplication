@@ -27,26 +27,22 @@ public class Email {
 
     //Method to setting up the department
     private String setDepartment() {
-        System.out.print("Enter the department\n1 for Sales\n2 for Development\n3 for Accounting\n0 for None" +
-                "\nDepartment code: ");
+        System.out.print("""
+                Enter the department
+                1 for Sales
+                2 for Development
+                3 for Accounting
+                0 for None
+                Department code:\s""");
         Scanner sc = new Scanner(System.in);
         int whatDepartmentIs = sc.nextInt();
-        String department = null;
-        switch (whatDepartmentIs) {
-            case (1):
-                department = "Sales";
-                break;
-            case (2):
-                department = "Development";
-                break;
-            case (3):
-                department = "Accounting";
-                break;
-            case (0):
-                department = "";
-                break;
-        }
-        return department;
+        return switch (whatDepartmentIs) {
+            case (1) -> "Sales";
+            case (2) -> "Development";
+            case (3) -> "Accounting";
+            case (0) -> "";
+            default -> null;
+        };
     }
 
     //Random password
