@@ -9,7 +9,8 @@ public class Email {
     private String password;
     private int defaultLengthOfPassword = 10;
     private String department;
-    private int mailboxCapacity;
+    private String email;
+    private int mailboxCapacity = 500;
     private String alternateEmail;
 
     //Constructor to receive first name and second name of user
@@ -22,13 +23,16 @@ public class Email {
 
         //Call a method what create a random password
         this.password = createRandomPassword(defaultLengthOfPassword);
-        System.out.println(password);
+
+        //Combine an email
+        email = firstName.toLowerCase() + "." + secondName.toLowerCase() + "@" + department + "." + "company.com";
+
     }
 
     //Method to setting up the department
     private String setDepartment() {
         System.out.print("""
-                Enter the department
+                Enter the department:
                 1 for Sales
                 2 for Development
                 3 for Accounting
@@ -56,20 +60,49 @@ public class Email {
         //Create the variable of StringBuilder adding random char symbols to there
         StringBuilder password = new StringBuilder();
 
-        for (int i = 0; i < length; i++)
-        {
+        for (int i = 0; i < length; i++) {
             //Create the variable to choose a random index not more than a length of Char
             int randomIndex = random.nextInt(chars.length());
-            //Add a char to password
+            //Add the char to password
             password.append(chars.charAt(randomIndex));
         }
         return password.toString();
     }
 
+    //Create the method showInfo
+    void showInfo() {
+        System.out.println("Display name: " + firstName + " " + secondName +
+                "\nEmail: " + email +
+                "\nMailbox capacity: " + mailboxCapacity);
+    }
+
+    //Get mailbox capacity
+    public int getMailboxCapacity() {
+        return mailboxCapacity;
+    }
+
+    //Get email
+    public String getEmail() {
+        return email;
+    }
+
+    //Get password
+    public String getPassword() {
+        return password;
+    }
 
     //Set mailbox capacity
+    public void setMailboxCapacity(int mailboxCapacity) {
+        this.mailboxCapacity = mailboxCapacity;
+    }
 
     //Set the alternate Email
+    public void setAlternateEmail(String alternateEmail) {
+        this.alternateEmail = alternateEmail;
+    }
 
     //Change the password
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
