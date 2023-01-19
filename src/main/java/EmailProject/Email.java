@@ -1,6 +1,7 @@
 package EmailProject;
 
 import java.security.SecureRandom;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Email {
@@ -38,15 +39,21 @@ public class Email {
                 3 for Accounting
                 0 for None
                 Department code:\s""");
-        Scanner sc = new Scanner(System.in);
-        int whatDepartmentIs = sc.nextInt();
-        return switch (whatDepartmentIs) {
-            case (1) -> "Sales";
-            case (2) -> "Development";
-            case (3) -> "Accounting";
-            case (0) -> "";
-            default -> null;
-        };
+        try {
+            Scanner sc = new Scanner(System.in);
+            int whatDepartmentIs = sc.nextInt();
+            return switch (whatDepartmentIs) {
+                case (1) -> department = "Sales";
+                case (2) -> department = "Development";
+                case (3) -> department = "Accounting";
+                case (0) -> department = "";
+                default -> null;
+            };
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Enter the number of department.");
+            setDepartment();
+        }
+        return department;
     }
 
     //Random password
